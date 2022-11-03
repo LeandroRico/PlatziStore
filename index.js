@@ -6,6 +6,7 @@ const {
   logErrors,
   errorHandler,
   boomErrorHandler,
+  ormErrorHandler,
 } = require('./middlewares/errorHandler');
 
 const app = express();
@@ -13,16 +14,17 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const whiteList = ['localhost:3000'];
+const whitelist = ['http://localhost:3000'];
 const options = {
   origin: (origin, callback) => {
-    if (whiteList.includes(origin)) {
+    if (whitelist.includes(origin) || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('No permitido'));
+      callback(new Error('Not allowed'));
     }
   },
 };
+
 app.use(cors(options));
 
 app.get('/', (req, res) => {
@@ -32,6 +34,7 @@ app.get('/', (req, res) => {
 routerApi(app);
 
 app.use(logErrors);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
