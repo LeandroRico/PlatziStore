@@ -3,6 +3,7 @@ const usersRouter = require('./usersRouter');
 const customersRouter = require('./customersRouter');
 const categoriesRouter = require('./categoriesRouter');
 const productsRouter = require('./productsRouter');
+const ordersRouter = require('./ordersRouter');
 
 const routerApi = (app) => {
   const router = express.Router();
@@ -11,6 +12,7 @@ const routerApi = (app) => {
   router.use('/customers', customersRouter);
   router.use('/categories', categoriesRouter);
   router.use('/products', productsRouter);
+  router.use('/orders', ordersRouter);
 };
 
 module.exports = routerApi;
