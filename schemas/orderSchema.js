@@ -20,4 +20,4 @@ const addItemSchema = Joi.object({
   amount: amount.required(),
 });
 
-module.exports = { getOrderSchema, createOrderSchema, addItemSchema };
+module.exports = { getOrderSchema, addItemSchema, createOrderSchema };

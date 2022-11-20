@@ -41,13 +41,14 @@ class ProductService {
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const product = await this.findOne(id);
+    const response = await product.update(changes);
+    return response;
   }
 
   async delete(id) {
+    const product = await this.findOne(id);
+    await product.destroy()
     return { id };
   }
 }
