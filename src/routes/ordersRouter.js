@@ -3,7 +3,11 @@ const passport = require('passport');
 
 const OrderService = require('../services/orderService');
 const validatorHandler = require('../middlewares/validatorHandler');
-const { getOrderSchema, addItemSchema, createOrderSchema } = require('../schemas/orderSchema');
+const {
+  getOrderSchema,
+  addItemSchema,
+  createOrderSchema,
+} = require('../schemas/orderSchema');
 
 const router = express.Router();
 const service = new OrderService();

@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const routerApi = require('./routes');
-
+const routerApi = require('./src/routes');
+const useGraphql = require('./src/graphql');
 const {
   logErrors,
   errorHandler,
   boomErrorHandler,
   ormErrorHandler,
-} = require('./middlewares/errorHandler');
+} = require('./src/middlewares/errorHandler');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,13 +27,14 @@ const options = {
 
 app.use(cors(options));
 
-require('./utils/auth');
+require('./src/utils/auth');
 
 app.get('/', (req, res) => {
   res.send('Hello world');
 });
 
 routerApi(app);
+useGraphql(app);
 
 app.use(logErrors);
 app.use(ormErrorHandler);

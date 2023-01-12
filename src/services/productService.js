@@ -1,4 +1,5 @@
 const { Op } = require('sequelize');
+const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 
 class ProductService {
@@ -37,6 +38,9 @@ class ProductService {
     const product = await models.Product.findByPk(id, {
       include: ['category'],
     });
+    if (!product) {
+      throw boom.notFound('Product not found');
+    }
     return product;
   }
 
@@ -48,8 +52,12 @@ class ProductService {
 
   async delete(id) {
     const product = await this.findOne(id);
-    await product.destroy()
+    await product.destroy();
     return { id };
+  }
+
+  async getByCategory(id) {
+    return await models.Product.findAll({ where: { categoryId: id } });
   }
 }
 

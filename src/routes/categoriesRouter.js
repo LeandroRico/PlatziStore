@@ -7,7 +7,7 @@ const {
   createCategorySchema,
   updateCategorySchema,
   getCategorySchema,
-} = require('./../schemas/categorySchema');
+} = require('../schemas/categorySchema');
 const { checkRoles } = require('../middlewares/authHandler');
 
 const router = express.Router();

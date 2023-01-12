@@ -27,7 +27,7 @@ router.post(
 );
 
 router.post('/recovery', async (req, res, next) => {
-  validatorHandler(recoveryPasswordSchema, 'body')
+  validatorHandler(recoveryPasswordSchema, 'body');
   try {
     const { email } = req.body;
     const response = await service.sendRecovery(email);
@@ -38,7 +38,7 @@ router.post('/recovery', async (req, res, next) => {
 });
 
 router.post('/change-password', async (req, res, next) => {
-  validatorHandler(changePasswordSchema, 'body')
+  validatorHandler(changePasswordSchema, 'body');
   try {
     const { token, newPassword } = req.body;
     const response = await service.changePassword(token, newPassword);

@@ -1,14 +1,14 @@
 const express = require('express');
 const passport = require('passport');
 
-const ProductsService = require('./../services/productService');
-const validatorHandler = require('./../middlewares/validatorHandler');
+const ProductsService = require('../services/productService');
+const validatorHandler = require('../middlewares/validatorHandler');
 const {
   createProductSchema,
   updateProductSchema,
   getProductSchema,
   queryProductSchema,
-} = require('./../schemas/productSchema');
+} = require('../schemas/productSchema');
 const { checkRoles } = require('../middlewares/authHandler');
 
 const router = express.Router();
